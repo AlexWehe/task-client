@@ -1,0 +1,18 @@
+<h3>{{pageTitle}}</h3>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" required name="name" [(ngModel)]='modelTask.name'>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" class="form-control" required name="description" [(ngModel)]='modelTask.description'>
+  </div>
+  <div class="form-group">
+    <label>Status</label>
+    <select class="form-control" name="selectedValue" [(ngModel)]="modelTask.status">
+      <option *ngFor="let state of status" required [ngValue]="state">{{ state }}</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Create</button>
+</form>

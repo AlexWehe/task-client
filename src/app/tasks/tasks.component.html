@@ -1,0 +1,33 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    {{pageTitle}}
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'
+             *ngIf='tasks && tasks.length'>
+        <thead>
+        <tr>
+          <th>Task</th>
+          <th>Description</th>
+          <th>Create date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let task of tasks'>
+          <td>{{ task.name }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.create_date }}</td>
+          <td>{{ task.status }}</td>
+          <td><a [routerLink]="['/update-task', task._id ]" class="btn btn-primary" >Edit task</a></td>
+          <td><button  (click)='deleteTask(task._id)' class="btn btn-danger" >Delete task</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>

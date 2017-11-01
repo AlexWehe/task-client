@@ -40,8 +40,7 @@ export class UpdateTaskComponent implements OnInit {
     console.log(this.task);
     this._taskService.updateTask(this.id, this.task)
       .subscribe(task => {
-          this.task = task;
-          console.log(task);
+          this._router.navigate(['/tasks-list']);
         },
         error => this.errorMessage = <any>error);
   }

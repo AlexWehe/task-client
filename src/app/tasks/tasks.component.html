@@ -28,6 +28,9 @@
     </div>
   </div>
 </div>
-<div *ngIf='errorMessage' class='alert alert-danger'>
+<div *ngIf='errorMessage' class='alert alert-success'>
   Error: {{ errorMessage }}
+</div>
+<div *ngIf='successMessage' class='alert alert-success'>
+  Success: {{ successMessage }}
 </div>

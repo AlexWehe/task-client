@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../tasks.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { TasksService } from '../tasks.service';
 import { Task } from '../model/task.model';
 import { ITask } from '../task';
 
@@ -17,13 +19,12 @@ export class CreateTaskComponent implements OnInit {
   task: ITask[] = [];
 
 
-  constructor(private _taskService: TasksService) { }
+  constructor(private _taskService: TasksService, private router: Router) { }
 
   submitForm(form: NgForm) {
     this._taskService.createTask(this.modelTask)
       .subscribe(tasks => {
-          this.task = tasks;
-          console.log(tasks);
+          this.router.navigate(['/tasks-list']);
         },
         error => this.errorMessage = <any>error);
   }

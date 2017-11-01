@@ -10,11 +10,16 @@ import { ITask } from './task';
 export class TasksComponent implements OnInit {
   pageTitle = 'Tasks List';
   errorMessage: string;
+  successMessage: string;
   tasks: ITask[] = [];
 
   constructor(private _taskService: TasksService) { }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+  getTasks() {
     this._taskService.getTasks()
       .subscribe(tasks => {
           this.tasks = tasks;
@@ -24,10 +29,10 @@ export class TasksComponent implements OnInit {
   }
   deleteTask(id: string) {
     this._taskService.deleteTask(id)
-      .subscribe(tasks => {
-          this.tasks = tasks;
-          console.log(tasks);
+      .subscribe( result => {
+        this.getTasks();
+        this.successMessage = result.message;
         },
-        error => this.errorMessage = <any>error);
+          error => this.errorMessage = <any>error);
   }
 }
